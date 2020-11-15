@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>SAM2021</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/css/forms.css}" rel="stylesheet"/>
+</head>
+<header>
+    <div th:include="fragments/header :: header"> </div>
+</header>
+<script>
+</script>
+<style>
+    input[type=text], input[type=password], input[type=email], select {
+        width: 50%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    input[type=submit] {
+        padding: 14px 20px;
+        margin: 8px 0;
+        border-radius: 4px;
+        cursor: pointer;
+        border: 1px solid;
+        display: inline-block;
+        background: #3D3C3C;
+        font-family: Roboto;
+        color:#FCF7F7;
+    }
+    input[type=submit]:hover {
+        background-color: lightgrey;
+    }
+    label {
+        font-family: Roboto;
+        font-size: 20px;
+    }
+    .form{
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+        margin: auto;
+        width: 50%;
+        text-align: center;
+    }
+
+</style>
+<body>
+    <div>
+        <h1>User Table:</h1>
+        <table th:if="${users}">
+            <thead>
+            <tr>
+                <th>Email</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user_e: ${users}" >
+                <td th:text="${user_e}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="form">
+        <h1>New User Form: </h1>
+        <form method="POST" th:action="@{/admin/}" >
+            <label for="email">Email:</label>
+            <input id="email" name="email" type="text" required><br>
+            <label for="role">Role:</label>
+            <select  type="input" id="role" name="role" required>
+                <option value="admin">Admin</option>
+                <option value="worker">Worker</option>
+                <option value="manager">Manager</option>
+            </select><br>
+            <label for="password">Password:</label>
+            <input id="password" name="password" type="text" required><br>
+            <input type="submit" value="Submit" onclick="confirm('Are you sure you wish to add user?')">
+        </form>
+    </div>
+</body>
+</html>

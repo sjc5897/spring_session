@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Auth Tutorial</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<style>
+    input[type=text], input[type=password], input[type=email], select {
+        width: 50%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    input[type=submit] {
+        padding: 14px 20px;
+        margin: 8px 0;
+        border-radius: 4px;
+        cursor: pointer;
+        border: 1px solid;
+        display: inline-block;
+        background: #3D3C3C;
+        font-family: Roboto;
+        color:#FCF7F7;
+    }
+    input[type=submit]:hover {
+        background-color: lightgrey;
+    }
+    label {
+        font-family: Roboto;
+        font-size: 20px;
+    }
+    .form{
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+        margin: auto;
+        width: 50%;
+        text-align: center;
+    }
+
+</style>
+<body>
+<div class="form">
+    <div id="errors" th:if="${error}" th:text="${error}">
+        Username or password incorrect
+    </div>
+    <form method="POST" action="login">
+        <label for="username">Email:</label>
+        <input id="username" name="username" type="text" required><br>
+        <label for="password">Password:</label>
+        <input id="password" name="password" type="password" required><br>
+        <input type="submit" value="Login">
+    </form>
+</div>
+</body>
+</html>

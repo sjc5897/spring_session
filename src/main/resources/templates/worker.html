@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>SAM2021</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/css/forms.css}" rel="stylesheet"/>
+</head>
+<header>
+    <div th:include="fragments/header :: header"> </div>
+</header>
+<script>
+</script>
+<body>
+       <div th:if="${task != null}">
+           <p th:text="'YOUR TASK SHOULD YOU CHOOSE TO ACCEPT IT IS: ' +${task}"></p>
+           <a th:href="@{/worker/} + ${task}">DONE ALREADY?</a>
+       </div>
+        <div th:if="${task == null}">
+            <p>NO TASK, WHY DO WE EVEN PAY YOU</p>
+        </div>
+</body>
+</html>
