@@ -9,7 +9,7 @@
 </header>
 <script>
 </script>
-<body onload="resetTime()">
+<body onload="resetTime()" onbeforeunload="unload()">
        <div th:if="${task != null}">
            <p th:text="'YOUR TASK SHOULD YOU CHOOSE TO ACCEPT IT IS: ' +${task}"></p>
            <a th:href="@{/worker/} + ${task}">DONE ALREADY?</a>

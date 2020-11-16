@@ -47,7 +47,7 @@
     }
 
 </style>
-<body onload="resetTime()">
+<body onload="resetTime()" onbeforeunload="unload()">
 <div>
     <h1>Task Table:</h1>
     <table th:if="${tasks}">

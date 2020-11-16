@@ -1,4 +1,4 @@
-package com.spring_auth;
+package com.spring_session;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

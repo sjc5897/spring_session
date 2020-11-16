@@ -46,7 +46,17 @@
                 if( timeoutID ) {
                     clearTimeout(timeoutID)
                 }
-                timeoutID = setTimeout( function() {alert("Timeout in 15 secs")} , (45000) );
+                timeoutID = setTimeout( function() {
+                    alert("Timeout in 15 secs");
+                    timeoutID = setTimeout(function () {
+                        location.reload();
+                    }, (15000) );
+                } , (45000) );
+            }
+
+            function unload(){
+                alert("unload");
+                window.location.replace('/logout');
             }
 
 
@@ -54,9 +64,7 @@
             document.onkeydown = resetTime();
             document.onclick   = resetTime();
 
-            window.onbeforeunload= function(){
-                /*[[${sessions.invalidate()}]]*/
-            }
+
 
         </script>
 
