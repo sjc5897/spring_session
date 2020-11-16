@@ -1,27 +1,145 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<header th:fragment="header">
-    <title>SAM2021</title>
+
+<header th:fragment="header" onload="resetTime()">
+    <title>Workcity us</title>
     <head>
-        <link th:href="@{/css/header.css}" rel="stylesheet">
+        <style>
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                background: #111111;
+            }
+
+            li h1{
+                font-size: 36px;
+                line-height: 42px;
+                display: flex;
+                align-items: center;
+                color: #FFFCFC;
+                float: left;
+                padding: 14px 16px;
+            }
+
+            li a{
+                font-size: 18px;
+                line-height: 21px;
+                display: block;
+                align-items: center;
+                text-align: center;
+                text-decoration: none;
+                float: right;
+                color: #FFFCFC;
+
+            }
+            li a:hover{
+                background-color: #111;
+            }
+        </style>
+
+        <script>
+            var timeoutID;
+
+            function resetTime(){
+                if( timeoutID ) {
+                    clearTimeout(timeoutID)
+                }
+                timeoutID = setTimeout( function() {alert("Timeout in 15 secs")} , (45000) );
+            }
+
+
+            document.onkeyup   = resetTime();
+            document.onkeydown = resetTime();
+            document.onclick   = resetTime();
+
+            window.onbeforeunload= function(){
+                /*[[${sessions.invalidate()}]]*/
+            }
+
+        </script>
+
+<!--        <script>-->
+<!--            function run(){-->
+<!--                alert("Run");-->
+<!--                var timer = new IdleTimeout(60)-->
+<!--            }-->
+
+<!--            //timeout.js-->
+<!--            function IdleTimeout(timeoutSeconds){-->
+<!--                //console.log("Constructor Instantiated......");-->
+<!--                var defaultOptions = {-->
+<!--                    callback: function(){},-->
+<!--                    alertTimeoutSeconds: 10,-->
+<!--                    events: "mousemove keydown wheel DOMMouseScroll mousewheel mousedown touchstart touchmove MSPointerDown MSPointerMove"-->
+<!--                };-->
+<!--                this.timeoutSeconds = timeoutSeconds;-->
+<!--                this.options = Object.assign({}, defaultOptions, options);-->
+<!--                this.timeoutRef = null;-->
+<!--                this.intervalRef = null;-->
+<!--                this.activityListenerRef = this.activityListener.bind(this);-->
+<!--                this.activityListenerRefs = {};-->
+<!--                this.startTime = null;-->
+<!--                this.endTime = null;-->
+
+<!--                this.options.events.split(' ').forEach(function (event){-->
+<!--                    this.activityListenerRefs[event] = this.activityListener.bind(this);-->
+<!--                    window.addEventListener(event,this.activityListenerRefs[event] );-->
+
+<!--                },this);-->
+
+<!--                this.startTimer();-->
+<!--            }-->
+
+<!--            IdleTimeout.prototype.startTimer= function(){-->
+<!--                this.startTime = new Date();-->
+<!--                this.endTime = new Date(this.startTime.getTime() + (this.timeoutSeconds*1000));-->
+<!--                this.timeoutRef = setTimeout(this.onTimerDone.bind(this),this.timeoutSeconds * 1000);-->
+<!--                this.intervalRef = setInterval(this.showMessage.bind(this),1000);-->
+<!--            };-->
+
+<!--            IdleTimeout.prototype.clearTimer = function(){-->
+<!--                clearTimeout(this.timeoutRef);-->
+<!--                clearTimeout(this.intervalRef);-->
+<!--            };-->
+
+<!--            IdleTimeout.prototype.resetTimer = function(){-->
+<!--                this.clearTimer();-->
+<!--                this.startTimer();-->
+<!--            };-->
+
+<!--            IdleTimeout.prototype.onTimerDone= function(){-->
+<!--                this.options.callback();-->
+<!--                this.options.events.split(' ').forEach(function (event){-->
+<!--                    this.activityListenerRefs[event] = this.activityListener.bind(this);-->
+<!--                    window.removeEventListener(event,this.activityListenerRefs[event] );-->
+
+<!--                },this);-->
+<!--                clearTimeout(this.intervalRef);-->
+<!--            };-->
+
+<!--            IdleTimeout.prototype.activityListener = function(){-->
+<!--                this.resetTimer();-->
+<!--            };-->
+
+<!--            IdleTimeout.prototype.showMessage = function(){-->
+
+<!--                var remaining = Math.ceil((this.endTime.getTime() - (new Date().getTime()))/1000);-->
+<!--                var message = `${remaining} second(s) remaining. . . .`;-->
+
+<!--                console.alert(message);-->
+
+<!--            };-->
+<!--        </script>-->
     </head>
     <ul>
-        <li><h1 class="logo">Work City USA</h1></li>
-        <li class="navbutton" th:if="${session.isEmpty()}"><a href="/login" th:method="GET">Login</a> </li>
-        <li class="navbutton" th:if="${!session.isEmpty()}"><a href="/logout" th:method="GET">Logout</a> </li>
+        <li><h1>Work City USA</h1></li>
+        <li th:if="${session.isEmpty()}"><a href="/login" th:method="GET">Login</a> </li>
+        <li th:if="${!session.isEmpty()}"><a href="/logout" th:method="GET">Logout</a> </li>
     </ul>
 </header>
-<script>
-    var timeoutMsg = "Your session will time out soon due to inactivity";
 
-    function timeoutPrompt(){
-
-
-    }
-
-
-
-</script>
 <body>
 </body>
 </html>

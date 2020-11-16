@@ -41,6 +41,8 @@ public class AuthenticationController {
         newSession.setAttribute("role",role);
         newSession.setMaxInactiveInterval(60);
 
+        model.addAttribute("sessions", session);
+
         return "redirect:/" + role;
 
     }
